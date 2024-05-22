@@ -1,0 +1,157 @@
+﻿@{
+    var listUser = ViewBag.ListUsers as List<BTLONLTWEB.Models.User>;
+    var nfi = new System.Globalization.NumberFormatInfo { NumberGroupSeparator = "." };
+    var function = new BTLONLTWEB.Models.Function();
+}
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title></title>
+    <link rel="stylesheet" href="~/Content/UserManagement.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700">
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="About">
+    <meta property="og:type" content="website">
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-align-center u-clearfix u-section-1" id="sec-6b8d">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <p class="u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-md u-align-left-xl u-custom-font u-font-oswald u-text u-text-1">
+                <span class="u-file-icon u-icon u-icon-1"><img src="~/Image/Logo/33308.png" alt="" style=""></span>&nbsp;User Management
+            </p>
+            <div class="u-form u-form-1">
+            @using (Html.BeginForm("UserManagement", "Home", FormMethod.Get, new { enctype = "multipart/form-data" }))
+            {
+                <div class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px;" source="email">
+                    <div class="u-form-group u-form-name u-label-none">
+                    @Html.TextBox("search", "",new
+                       {
+                           type = "text",
+                           placeholder = "Search users",
+                           id = "name-ef64",
+                           @class="u-border-1 u-border-grey-30 u-custom-font u-font-oswald u-input u-input-rectangle u-input-1",
+                           name = "name"
+                       })
+                    </div>
+                    <div class="u-form-group u-form-submit">
+                        <a href="#" class="u-active-black u-black u-border-none u-btn u-btn-submit u-button-style u-custom-font u-font-oswald u-hover-palette-5-base u-btn-1">
+                            Find<br>
+                        </a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                    </div>
+                </div>
+            }
+            </div>
+            <p class="u-custom-font u-font-oswald u-text u-text-default u-text-2">
+                <span style="font-weight: normal;">All</span> (@listUser.Count) | <span style="font-weight: normal;">Administrator</span> (@listUser.Count(p=>p.TypeUser.Trim()=="Admin")) | <span style="font-weight: normal;">Subscriber</span> (@listUser.Count(p => p.TypeUser.Trim() == "Customer"))
+            </p>
+            <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                <table class="u-table-entity u-table-entity-1">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="25%">
+                        <col width="15%">
+                        <col width="20%">
+                        <col width="15%">
+                        <col width="15%">
+                    </colgroup>
+                    <thead class="u-black u-custom-font u-font-oswald u-table-header u-table-header-1">
+                        <tr style="height: 54px;">
+                            <th class="u-border-1 u-border-black u-table-cell" colspan="2">Username</th>
+                            
+                            <th class="u-border-1 u-border-black u-table-cell">Email</th>
+                            <th class="u-border-1 u-border-black u-table-cell">Phone number</th>
+                            <th class="u-border-1 u-border-black u-table-cell">Role</th>
+                            <th class="u-border-1 u-border-black u-table-cell">Total Spent</th>
+                        </tr>
+                    </thead>
+                    <tbody class="u-custom-font u-font-oswald u-table-body u-table-body-1">
+                        @foreach (var item in listUser)
+                        {
+                            if (item.TypeUser.Trim() == "Admin")
+                            {
+                                <tr style="height: 142px;">
+                                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell" >
+                                        <img class="cell-image" src="@Url.Content(item.IdAvatar)"  alt="" />
+                                    </td>
+                                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                        <span>@item.Name</span>
+                                    </td>
+                                    @if (item.Email == null || item.Email.Length == 0)
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">NULL</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.Email</td>
+                                    }
+                                    @if (item.PhoneNumber == null || item.PhoneNumber.Length == 0)
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">NULL</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.PhoneNumber</td>
+                                    }
+                                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.TypeUser</td>
+                                    @if (item.TotalSpent == 0)
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">0 vnđ</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.TotalSpent.Value.ToString("#,##", nfi) vnđ</td>
+                                    }
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr style="height: 125px;">
+                                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                        <img class="cell-image" src="@Url.Content(item.IdAvatar)" alt="" />
+                                    </td>
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                            <span>@item.Name<br /><a href="/Home/UserDetails/@item.IdUser">Details</a> | <a href="/Home/DeleteUser/@item.IdUser">Delete</a> | <a href="/Home/BanUser/@item.IdUser">@function.PrintBan(item.Member)</a></span>
+                                        </td>
+            
+                                    @if (item.Email == null || item.Email.Length == 0)
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">NULL</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.Email</td>
+                                    }
+                                    @if (item.PhoneNumber==null ||item.PhoneNumber.Length == 0)
+                                    {
+                                       <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">NULL</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.PhoneNumber</td>
+                                    }
+                                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.TypeUser</td>
+                                    @if (item.TotalSpent == 0)
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">0 vnđ</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.TotalSpent.Value.ToString("#,##", nfi) vnđ</td>
+                                    }
+                                   
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<BTLONLTWEB.Models.DisplayProd>
+                      @{
+                          var nfi = new System.Globalization.NumberFormatInfo { NumberGroupSeparator = "." };
+                      }
+    
+    <!DOCTYPE html>
+    <html style="font-size: 16px;" lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta name="keywords" content="Vui lòng chọn ảnh đại diện">
+        <meta name="description" content="">
+        <title></title>
+        <link rel="stylesheet" href="~/Content/Search_Products.css" media="screen">
+        <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+        <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,400,500,600,700,800,900|Bangers:400">
+        <script type="application/ld+json">
+            {
+            "name": "",
+            "sameAs": []
+            }
+        </script>
+        <meta name="theme-color" content="#478ac9">
+        <meta property="og:title" content="Page 2">
+        <meta property="og:type" content="website">
+    </head>
+    <body class="u-body u-xl-mode" data-lang="en">
+        <section class="u-clearfix u-uploaded-video u-video u-section-1" id="sec-f387">
+            <div class="u-background-video u-expanded" style="">
+                <div class="embed-responsive">
+                    <video class="embed-responsive-item" data-autoplay="1" loop="" muted="1" autoplay="autoplay" playsinline="">
+                        <source src="~/Image/Logo/BlueGalaxy.mp4" type="video/mp4">
+
+                    </video>
+                </div>
+            </div>
+            <div class="u-clearfix u-sheet u-sheet-1"></div>
+        </section>
+        <section class="u-clearfix u-gradient u-section-2" id="sec-9de5">
+            <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+                @if(Model.Count()==0)
+                { 
+                <div class=" u-container-style u-expanded-width-md u-group u-group-1">
+                    <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-container-layout-1">
+                        <h1 style="color:white" class=" u-baby-font u-hover-feature u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1000"> &nbsp;&nbsp;SORRY, WE CAN'T FIND IT</h1>
+                    </div>
+                </div>
+                }
+                <div class="u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-list u-list-1">
+                    <div class="u-repeater u-repeater-1">
+                        @foreach (var item in Model)
+                        {
+                            <div class="u-align-center u-container-style u-list-item u-repeater-item u-shape-rectangle">
+                                <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-xl u-container-layout-2">
+                                    <div class="u-align-left u-container-style u-group u-hover-feature u-radius-10 u-shape-rectangle u-white u-group-2">
+                                        <div class="u-container-layout u-container-layout-3">
+                                            <img class="u-border-2 u-border-white u-hover-feature u-image u-image-round u-preserve-proportions u-radius-17 u-image-1" src="@Url.Content(item.Path)" alt="" data-image-width="219" data-image-height="219">
+                                            <h4 class="u-text u-text-2" data-animation-name="" data-animation-duration="0" data-animation-direction="" style="text-align:center">
+                                                @item.Name
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                var price = item.Price - (item.Price * item.Discount);
+                                                var percentage = item.Discount * 100;
+                                                <p class="u-custom-font u-font-arial u-text u-text-3">
+                                                    <span style="text-decoration:line-through">@item.Price.ToString("#,##", nfi) vnđ</span> <span style="color:red;font-weight:bold;text-decoration:none!important;font-size:13px">-@percentage%</span>
+                                                </p>
+
+
+                                                <p class="u-custom-font u-font-arial u-text u-text-4">@price.ToString("#,##", nfi) vnđ</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="u-custom-font u-font-arial u-text u-text-9">&nbsp;&nbsp;</p>
+                                                <p class="u-custom-font u-font-arial u-text u-text-4">@item.Price.ToString("#,##", nfi) vnđ</p>
+                                            }
+                                            <a href="~/Home/Details/@item.ID" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-dark-2 u-palette-4-base u-radius-6 u-btn-1">
+                                                <span class="u-file-icon u-icon u-icon-1"><img src="~/Image/Logo/Cart.png" alt=""></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

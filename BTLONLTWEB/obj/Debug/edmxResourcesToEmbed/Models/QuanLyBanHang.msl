@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuanLyBanHangModelStoreContainer" CdmEntityContainer="QuanLyBanHangEntities">
+    <EntitySetMapping Name="Brands">
+      <EntityTypeMapping TypeName="QuanLyBanHangModel.Brand">
+        <MappingFragment StoreEntitySet="Brand">
+          <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+          <ScalarProperty Name="NameBrand" ColumnName="NameBrand" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Catalogs">
+      <EntityTypeMapping TypeName="QuanLyBanHangModel.Catalog">
+        <MappingFragment StoreEntitySet="Catalog">
+          <ScalarProperty Name="IdCatalog" ColumnName="IdCatalog" />
+          <ScalarProperty Name="NameCatalog" ColumnName="NameCatalog" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="QuanLyBanHangModel.Image">
+        <MappingFragment StoreEntitySet="Image">
+          <ScalarProperty Name="IdImage" ColumnName="IdImage" />
+          <ScalarProperty Name="FileImage" ColumnName="FileImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImageDetails">
+      <EntityTypeMapping TypeName="QuanLyBanHangModel.ImageDetail">
+        <MappingFragment StoreEntitySet="ImageDetails">
+          <ScalarProperty Name="IdImage" ColumnName="IdImage" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="ImageType" ColumnName="ImageType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="QuanLyBanHangModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="QuanLyBanHangModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="QuanLyBanHangModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="NameProduct" ColumnName="NameProduct" />
+          <ScalarProperty Name="IdCatalog" ColumnName="IdCatalog" />
+          <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="QuanLyBanHangModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="IdAvatar" ColumnName="IdAvatar" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Member" ColumnName="Member" />
+          <ScalarProperty Name="TotalSpent" ColumnName="TotalSpent" />
+          <ScalarProperty Name="TypeUser" ColumnName="TypeUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyBanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="IdBrand" />
+    </Key>
+    <Property Name="IdBrand" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="NameBrand" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Catalog">
+    <Key>
+      <PropertyRef Name="IdCatalog" />
+    </Key>
+    <Property Name="IdCatalog" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="NameCatalog" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="IdImage" />
+    </Key>
+    <Property Name="IdImage" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="FileImage" Type="nvarchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImageDetails">
+    <Key>
+      <PropertyRef Name="IdImage" />
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdImage" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="IdProduct" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="ImageType" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="IdOrder" />
+    </Key>
+    <Property Name="IdOrder" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="IdUser" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Total" Type="float" />
+    <Property Name="Delivery" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Payment" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="IdOrder" />
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdOrder" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="IdProduct" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdProduct" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="NameProduct" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IdCatalog" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="IdBrand" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Discount" Type="float" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="State" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="char" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="char" MaxLength="11" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gender" Type="char" MaxLength="2" />
+    <Property Name="IdAvatar" Type="char" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="Member" Type="nvarchar" MaxLength="50" />
+    <Property Name="TotalSpent" Type="float" />
+    <Property Name="TypeUser" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Receiver" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_ImageDetails_Image">
+    <End Role="Image" Type="Self.Image" Multiplicity="1" />
+    <End Role="ImageDetails" Type="Self.ImageDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="IdImage" />
+      </Principal>
+      <Dependent Role="ImageDetails">
+        <PropertyRef Name="IdImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageDetails_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ImageDetails" Type="Self.ImageDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="ImageDetails">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OderDetails_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="IdOrder" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="IdOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OderDetails_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Brand">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="IdBrand" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IdBrand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Catalog">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="IdCatalog" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IdCatalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyBanHangModelStoreContainer">
+    <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Catalog" EntityType="Self.Catalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImageDetails" EntityType="Self.ImageDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ImageDetails_Image" Association="Self.FK_ImageDetails_Image">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="ImageDetails" EntitySet="ImageDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageDetails_Product" Association="Self.FK_ImageDetails_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ImageDetails" EntitySet="ImageDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OderDetails_Order" Association="Self.FK_OderDetails_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OderDetails_Product" Association="Self.FK_OderDetails_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+      <End Role="Brand" EntitySet="Brand" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Catalog" Association="Self.FK_Product_Catalog">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

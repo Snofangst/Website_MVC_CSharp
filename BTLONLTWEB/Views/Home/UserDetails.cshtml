@@ -1,0 +1,94 @@
+﻿@model BTLONLTWEB.Models.User
+@{
+    var function = new BTLONLTWEB.Models.Function();
+    var slsp = ViewBag.TotalItems;
+    var nfi = new System.Globalization.NumberFormatInfo { NumberGroupSeparator = "." };
+    var listorder = ViewBag.Orders as List<BTLONLTWEB.Models.Order>;
+}
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title></title>
+    <link rel="stylesheet" href="~/Content/UserDetails.css" media="screen">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700">
+    <meta name="theme-color" content="#478ac9">
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-align-center u-clearfix u-grey-15 u-section-1" id="sec-03a4">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-expanded-width u-tab-links-align-justify u-tabs u-tabs-1">
+                <ul class="u-tab-list u-unstyled" role="tablist">
+                    <li class="u-tab-item" role="presentation">
+                        <a class="active u-active-white u-button-style u-custom-font u-font-oswald u-tab-link u-tab-link-1" id="link-tab-14b7" href="#tab-14b7" role="tab" aria-controls="tab-14b7" aria-selected="true">THÔNG TIN KHÁCH HÀNG</a>
+                    </li>
+                    <li class="u-tab-item" role="presentation">
+                        <a class="u-active-white u-button-style u-custom-font u-font-oswald u-tab-link u-tab-link-2" id="link-tab-0da5" href="#tab-0da5" role="tab" aria-controls="tab-0da5" aria-selected="false">HÓA ĐƠN CỦA KHÁCH HÀNG</a>
+                    </li>
+                </ul>
+                <div class="u-tab-content">
+                    <div class="u-align-left u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
+                        <div class="u-container-layout u-container-layout-1">
+                            <p class="u-custom-font u-font-oswald u-text u-text-1">MÃ KHÁCH HÀNG: <span style="color:red">@Model.IdUser</span></p>
+                            <p class="u-custom-font u-font-oswald u-text u-text-2">USERNAME: <span style="color:red">@Model.Name</span></p>
+                            <p class="u-custom-font u-font-oswald u-text u-text-3">TÊN NGƯỜI NHẬN: <span style="color:red">@function.PrintNull(Model.Receiver)</span></p>
+                            <p class="u-custom-font u-font-oswald u-text u-text-4">SỐ ĐIỆN THOẠI: <span style="color:red">@function.PrintNull(Model.PhoneNumber)</span></p>
+                            <p class="u-custom-font u-font-oswald u-text u-text-5">EMAIL: <span style="color:red">@function.PrintNull(Model.Email)</span></p>
+                            <p class="u-custom-font u-font-oswald u-text u-text-6">THÀNH VIÊN: <span style="color:red">@Model.Member</span></p>
+                            <p class="u-custom-font u-font-oswald u-text u-text-7">GIỚI TÍNH: <span style="color:red">@function.PrintGender(Model.Gender)</span></p>
+                            <p class="u-custom-font u-font-oswald u-text u-text-8">ĐỊA CHỈ GIAO HÀNG: <span style="color:red">@function.PrintNull(Model.Address)</span></p>
+                            <div class="u-border-3 u-border-grey-dark-1 u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-line u-line-horizontal u-line-1"></div>
+                            <p class="u-custom-font u-font-oswald u-text u-text-9">TỔNG SỐ TIỀN ĐÃ CHI: <span style="color:red">@function.PrintTotal(Model.TotalSpent.Value.ToString("#,##", nfi)) vnđ</span></p>
+                            <p class="u-custom-font u-font-oswald u-text u-text-10">SỐ LƯỢNG SẢN PHẨM ĐÃ MUA: <span style="color:red">@slsp sản phẩm</span></p>
+                        </div>
+                    </div>
+                    <div class="u-container-style u-tab-pane u-white u-tab-pane-2" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
+                        <div class="u-container-layout u-valign-top-lg u-valign-top-md u-valign-top-xl u-container-layout-2">
+                            <div class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-table u-table-responsive u-table-1">
+                                <table class="u-table-entity">
+                                    <colgroup>
+                                        <col width="15.2%">
+                                        <col width="23.6%">
+                                        <col width="23.1%">
+                                        <col width="18.1%">
+                                        <col width="20%">
+                                    </colgroup>
+                                    <thead class="u-align-left u-custom-font u-font-oswald u-palette-5-dark-2 u-table-header u-table-header-1">
+                                      
+                                        <tr style="height: 52px;">
+                                            <th class="u-table-cell">MÃ HÓA ĐƠN</th>
+                                            <th class="u-table-cell">NGÀY LẬP</th>
+                                            <th class="u-table-cell">PHƯƠNG THỨC THANH TOÁN</th>
+                                            <th class="u-table-cell">TRẠNG THÁI GIAO HÀNG</th>
+                                            <th class="u-table-cell">TỔNG TIỀN</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="u-align-left u-custom-font u-font-oswald u-table-body u-table-body-1">
+                                        @foreach (var item in listorder)
+                                        {
+                                            <tr style="height: 60px;">
+                                                <td class="u-border-1 u-border-grey-15 u-border-no-left u-border-no-right u-first-column u-table-cell"><a href="/Home/ChiTietHoaDon/@item.IdOrder">@item.IdOrder</a></td>
+                                                <td class="u-border-1 u-border-grey-15 u-border-no-left u-border-no-right u-table-cell">@item.Date</td>
+                                                <td class="u-border-1 u-border-grey-15 u-border-no-left u-border-no-right u-table-cell">@item.Payment</td>
+                                                <td class="u-border-1 u-border-grey-15 u-border-no-left u-border-no-right u-table-cell">@item.Delivery</td>
+                                                <td class="u-border-1 u-border-grey-15 u-border-no-left u-border-no-right u-table-cell">@item.Total.Value.ToString("#,##", nfi) vnđ</td>
+                                            </tr>
+                                        }
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

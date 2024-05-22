@@ -1,0 +1,113 @@
+﻿@model List<BTLONLTWEB.Models.Order>
+
+@{
+    var nfi = new System.Globalization.NumberFormatInfo { NumberGroupSeparator = "." };
+    var listSort = new List<SelectListItem>(new[]{
+            new SelectListItem{Text ="CHỌN FILTER", Value=""},
+            new SelectListItem{Text ="TỔNG TIỀN TĂNG DẦN", Value="TỔNG TIỀN TĂNG DẦN"},
+            new SelectListItem{Text ="TỔNG TIỀN GIẢM DẦN", Value="TỔNG TIỀN GIẢM DẦN"},
+            new SelectListItem{Text ="NGÀY TĂNG DẦN", Value="NGÀY TĂNG DẦN"},
+            new SelectListItem{Text ="NGÀY GIẢM DẦN", Value="NGÀY GIẢM DẦN"},
+            new SelectListItem{Text ="GIỎ HÀNG CHƯA XÁC MINH", Value="CHƯA XÁC MINH"},
+            });
+    foreach(var item in listSort)
+    {
+        if (item.Value == ViewBag.Selected)
+        {
+            item.Selected = true;
+            break;
+        }
+           
+    }
+    var i = ViewBag.Anounce;
+}
+
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="QUẢN LÝ HÓA ĐƠN">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="~/Content/HideProdMenu.css" media="screen">
+    <title>QUẢN LÝ HÓA ĐƠN</title>
+    <link rel="stylesheet" href="~/Content/QL_HD.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700">
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+    @if(i!=null&&i=="1")
+    {
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Không thành công!</strong>
+        </div>
+    }
+     else
+     {
+         if (i == "0")
+         {
+            <div class="annouce">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Thành công!</strong>
+            </div>
+         }
+     }
+            <section class="u-align-center u-clearfix u-white u-section-1" id="carousel_fe34">
+                <div class="u-clearfix u-sheet u-sheet-1">
+                    <h1 class="u-custom-font u-font-oswald u-text u-text-1">QUẢN LÝ HÓA ĐƠN</h1>
+                   
+                    <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                        <div style="float:left;margin-bottom:10px">
+                            @using (Html.BeginForm("Sort", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.DropDownList("sort", listSort,
+                                new
+                                {
+                                    onchange = "this.form.submit();"
+                                })
+                            }
+                        </div>
+                        <table class="u-table-entity">
+                            <colgroup>
+                                <col width="20%">
+                                <col width="20%">
+                                <col width="16.7%">
+                                <col width="23.3%">
+                                <col width="20%">
+                            </colgroup>
+                            <thead class="u-align-center u-black u-custom-font u-font-oswald u-table-header u-table-header-1">
+                                <tr style="height: 51px;">
+                                    <th class="u-border-1 u-border-black u-table-cell">MÃ HÓA ĐƠN</th>
+                                    <th class="u-border-1 u-border-black u-table-cell">NGƯỜI MUA</th>
+                                    <th class="u-border-1 u-border-black u-table-cell">TỔNG TIỀN</th>
+                                    <th class="u-border-1 u-border-black u-table-cell">NGÀY LẬP</th>
+                                    <th class="u-border-1 u-border-black u-table-cell">CÁC CHỨC NĂNG</th>
+                                </tr>
+                            </thead>
+                            <tbody class="u-align-center u-custom-font u-font-oswald u-table-body u-table-body-1">
+                                @foreach (var item in Model)
+                                {
+                                    <tr style="height: 82px;">
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.IdOrder</td>
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.IdUser</td>
+                                        @if(item.Total!=0)
+                                        {
+                                            <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.Total.Value.ToString("#,##", nfi) vnđ</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.Total vnđ</td>
+                                        }
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">@item.Date</td>
+                                        <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell"><a href="/Home/ChiTietHoaDon/@item.IdOrder">CHI TIẾT</a>&nbsp; &nbsp;&nbsp; &nbsp;<a href="/Home/DeleteOrder/@item.IdOrder">XÓA</a> </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+</body>
+</html>

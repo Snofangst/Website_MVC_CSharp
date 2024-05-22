@@ -1,0 +1,86 @@
+﻿@model BTLONLTWEB.Models.Login
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html style="font-size: 16px;">
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+   
+    <meta name="keywords" content="Login">
+    <link rel="stylesheet" href="~/Content/HideProdMenu.css" media="screen">
+    <link rel="stylesheet" href="~/Content/Login_Form.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers:400">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+    
+    <section class="u-clearfix u-uploaded-video u-video u-section-1" id="sec-9413">
+        <div class="u-background-video u-expanded" style="">
+            <div class="embed-responsive">
+                <video class="embed-responsive-item" data-autoplay="1" loop="" muted="1" autoplay="autoplay" playsinline="">
+                    <source src="~/Image/Logo/SUNSET.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-align-center  u-container-style u-group   u-group-1">
+                <div class="u-container-layout u-container-layout-1">
+                    <h2 class="u-custom-font u-font-montserrat u-text-1" style="text-shadow:1px 1px black;color:orange;font-weight:bolder">Login</h2>
+                    <div class="u-expanded-width u-form u-login-control u-form-1" style="height:1000px">
+                        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                        {
+                            <div class="u-clearfix u-form-custom-backend u-form-spacing-22 u-form-vertical u-inner-form" source="custom" name="form-2" style="padding: 10px">
+                                <div class="u-form-group u-form-name">
+                                    <label for="username-708d" class="u-form-control u-text-white" style="text-shadow:1px 1px black">Username (*) </label>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", style = "color:red;text-shadow:1px 1px black;font-weight:bold" })
+                                    @Html.TextBoxFor(model => model.Name, new
+                                                    {
+                                                        @class = "u-grey-5 u-input u-radius-11",
+                                                        placeholder = "Enter your Username",
+                                                        id = "username-708d",
+                                                        name = "username",
+                                                        style="opacity:90%;border:3px solid orange"
+                                                    })
+
+                                </div>
+                                <div class="u-form-group u-form-password">
+                                    <label for="password-708d" class="u-form-control u-text-white " style="text-shadow:1px 1px black">Password (*) </label>@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", style = "color:red;text-shadow:1px 1px black;font-weight:bold" })<span style="color:red;text-shadow:1px 1px black;font-weight:bold">@ViewBag.Validation</span>
+                                    @Html.TextBoxFor(model => model.Password, new
+                                                       {
+                                                           @class = "u-grey-5 u-input u-radius-11",
+                                                           type = "password",
+                                                           placeholder = "Enter your Password",
+                                                           name = "password",
+                                                           id = "password-708d",
+                                                           style = "opacity:90%;border:3px solid orange"
+                                                       })
+
+
+                                </div>
+                                <div class="u-form-checkbox u-form-group">
+                                    <input type="checkbox" id="checkbox-708d" name="remember" value="On">
+                                    <label for="checkbox-708d" class="u-text-white" style="text-shadow:1px 1px black">Remember me</label>
+                                </div>
+                                <div class="u-align-center u-form-group u-form-submit">
+                                    <a href="#" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-radius-17 u-btn-1"style="background-color:orange;font-weight:bold;color:black" >Submit</a>
+                                    <input type="submit" value="submit" class="u-form-control-hidden">
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <a href="/Home/RestorePassword" class="u-border-1 u-border-active-palette-5-dark-3 u-border-hover-palette-3-base u-border-no-left u-border-no-right u-border-no-top u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-style u-login-control u-login-forgot-password u-none u-radius-0 u-text-white u-top-left-radius-0 u-top-right-radius-0 u-btn-2">Forgot password?</a>
+                    <a href="/Home/Register" class="u-border-1 u-border-active-black u-border-hover-palette-3-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-login-control u-login-create-account u-none u-text-white u-btn-3" style="text-shadow:1px 1px black">Don't have an account?</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

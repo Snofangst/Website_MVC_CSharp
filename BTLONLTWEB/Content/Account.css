@@ -1,0 +1,241 @@
+﻿ .u-section-1 {
+  background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/Image/Logo/wallpaperflare.com_wallpaper13.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 706px;
+}
+
+.u-section-1 .u-image-1 {
+  width: 404px;
+  height: 404px;
+  background-position: 50% 50%;
+  margin: 156px auto 0 0;
+}
+
+.u-section-1 .u-form-1 {
+  height: 616px;
+  background-image: none;
+  margin: -510px 11px 0 437px;
+}
+
+.u-section-1 .u-text-1 {
+  margin-left: 0;
+  font-family: Bangers;
+  font-size: 1.875rem;
+  font-weight: 400;
+}
+
+.u-section-1 .u-form-group-4 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-form-group-5 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-form-group-6 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-form-group-7 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-btn-1 {
+  background-image: none;
+  font-weight: 700;
+  border-style: solid;
+}
+
+.u-section-1 .u-btn-2 {
+  transition-duration: 0.5s;
+  box-shadow: 2px 0 0 0 rgba(0,0,0,0);
+  transform: translateX(0px) translateY(0px) scale(1) rotate(0deg);
+  margin: -77px 496px 31px auto;
+  padding: 0 11px 0 10px;
+}
+
+.u-section-1 .u-icon-1 {
+  font-size: 3.375em;
+  width: 59px;
+  height: 81px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 726px;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 363px;
+    height: 363px;
+    margin-top: 181px;
+    margin-left: 19px;
+  }
+
+  .u-section-1 .u-form-1 {
+    margin-top: -489px;
+    margin-right: 0;
+    margin-left: 401px;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-top: -79px;
+    margin-right: 337px;
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 1133px;
+  }
+
+  .u-section-1 .u-image-1 {
+    margin-top: 63px;
+    margin-left: auto;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 539px;
+    margin-top: 29px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin: -77px auto 53px 222px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 1126px;
+  }
+
+  .u-section-1 .u-image-1 {
+    margin-top: 51px;
+  }
+
+  .u-section-1 .u-form-1 {
+    margin-top: 20px;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-top: -79px;
+    margin-bottom: 60px;
+    margin-left: 127px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 1002px;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 198px;
+    height: 198px;
+    margin-top: 34px;
+  }
+
+  .u-section-1 .u-form-1 {
+    height: 707px;
+    margin-top: 0;
+    margin-right: initial;
+    margin-left: initial;
+    width: auto;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-bottom: 54px;
+    margin-left: 129px;
+  }
+}
+
+.u-section-1 .u-btn-2,
+.u-section-1 .u-btn-2:before,
+.u-section-1 .u-btn-2 > .u-container-layout:before {
+  transition-property: fill, color, background-color, stroke-width, border-style, border-width, border-top-width, border-left-width, border-right-width, border-bottom-width, custom-border, borders, box-shadow, text-shadow, opacity, border-radius, stroke, border-color, font-size, font-style, font-weight, text-decoration, letter-spacing, transform, background-image, image-zoom, background-size, background-position;
+}
+
+.u-section-1 .u-btn-2.u-btn-2.u-btn-2:hover {
+  transform: scale(1.1) translateX(0px) translateY(0px) !important;
+}
+
+.u-section-1 .u-btn-2.u-btn-2.u-btn-2.hover {
+  transform: scale(1.1) translateX(0px) translateY(0px) !important;
+}
+
+.u-section-1 .u-container-layout:hover .u-btn-2 {
+  transform: rotate(0deg) scale(1) translateX(0px) translateY(0px) !important;
+}
+
+.u-container-layout.hover .u-section-1 .u-btn-2 {
+  transform: rotate(0deg) scale(1) translateX(0px) translateY(0px) !important;
+}
+.u-dialog-section-4 {
+  min-height: 826px;
+}
+
+.u-dialog-section-4 .u-dialog-1 {
+  width: 545px;
+  min-height: 203px;
+  box-shadow: 0 0 14px 0 rgba(0,0,0,0.3);
+  height: auto;
+  margin: 255px auto 60px;
+}
+
+.u-dialog-section-4 .u-container-layout-1 {
+  padding: 30px;
+}
+
+.u-dialog-section-4 .u-text-1 {
+  font-size: 2.25rem;
+  font-family: Bangers;
+  margin: 17px auto 0;
+}
+
+.u-dialog-section-4 .u-form-1 {
+  height: 70px;
+  width: 485px;
+  margin: 15px 0 0;
+}
+
+.u-dialog-section-4 .u-btn-1 {
+  text-transform: uppercase;
+  background-image: none;
+  border-style: solid;
+  font-weight: 700;
+}
+
+.u-dialog-section-4 .u-icon-1 {
+  width: 16px;
+  height: 16px;
+  left: auto;
+  top: 17px;
+  position: absolute;
+  right: 16px;
+}
+
+@media (max-width: 767px) {
+  .u-dialog-section-4 .u-dialog-1 {
+    width: 540px;
+  }
+
+  .u-dialog-section-4 .u-form-1 {
+    margin-top: 165px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-dialog-section-4 .u-dialog-1 {
+    width: 545px;
+  }
+
+  .u-dialog-section-4 .u-form-1 {
+    margin-top: 15px;
+  }
+}

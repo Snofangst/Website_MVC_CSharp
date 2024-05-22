@@ -1,0 +1,192 @@
+﻿@model BTLONLTWEB.Models.Receipt
+
+@{
+    var nfi = new System.Globalization.NumberFormatInfo { NumberGroupSeparator = "." };
+    double totalItems=0;
+    double total=0;
+    var Cart=ViewBag.Cart as List<BTLONLTWEB.Models.Cart>;
+    var ORD = ViewBag.ORDER as BTLONLTWEB.Models.Order;
+}
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="GIỎ HÀNG">
+    <meta name="description" content="">
+    <title>Cart</title>
+    <link rel="stylesheet" href="~/Content/Cart.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Bangers:400">
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Page 5">
+    <meta property="og:type" content="website">
+
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-align-center u-clearfix u-palette-5-light-1 u-uploaded-video u-section-1" id="sec-754a">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-border-3 u-border-grey-dark-1 u-line u-line-vertical u-line-1"></div>
+            <h2 class="u-custom-font u-text u-text-default u-text-1">GIỎ HÀNG</h2>
+            <a href="/Home/Product_PC" class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-hover-black u-btn-1">
+                <span class="u-file-icon u-icon"><img src="~/Image/Logo/545680.png" alt=""></span>&nbsp;Tiếp tục mua sắm
+            </a>
+            @if(Cart!=null)
+            {
+            <div class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-list u-list-1" style="margin-top:0px">
+                <div class="u-repeater u-repeater-1">
+                    @{int i = 0;
+                      totalItems = Cart.Sum(p => p.Quantity);
+                      total = Cart.Sum(p => p.SubTotal);
+                      }
+                   
+                    @foreach(var item in Cart)
+                    {
+                        
+                        var prodid = "product" + i;
+                        <div class="u-container-style u-grey-5 u-hover-feature u-list-item u-radius-20 u-repeater-item u-shape-round u-list-item-1" id=@prodid >
+                            <div class="u-container-layout u-similar-container u-container-layout-2">
+                                @using (Html.BeginForm("Delete", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.Hidden("IDProduct", item.IDProduct)
+                                    @Html.Hidden("IDOrder", item.IDOrder)
+                                    <div class="u-form-group u-form-submit u-label-top u-form-group-2">
+                                        <button type="submit" class="u-btn u-btn-round u-button-style u-none u-text-hover-palette-3-base u-text-palette-4-base u-btn-3"
+                                                style="outline:none">
+                                            <span class="u-file-icon u-icon u-text-black u-icon-2"><img src="~/Image/Logo/Delete.png" alt=""></span>
+                                        </button>
+                                    </div>
+
+
+                                }
+                                <img class="u-image u-image-round u-preserve-proportions u-radius-11 u-image-2" src="@Url.Content(item.Image)" alt="" data-image-width="1280" data-image-height="860">
+                                <p class="u-custom-font u-font-oswald u-text u-text-6">@item.NameProduct</p>
+                                <p class="u-custom-font u-font-oswald u-text u-text-7">Giá: <span class="price">@item.Price.ToString("#,##", nfi)</span> vnđ</p>
+                                @using (Html.BeginForm("Update", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    var ListQuantity = new List<SelectListItem>();
+                                    for (int j = 0; j <= item.maxQuantity;j++ )
+                                    {
+                                        var y = new SelectListItem
+                                        {
+                                            Text = j.ToString(),
+                                            Value = j.ToString(),
+                                            
+                                        };
+                                        if(int.Parse(y.Value)==item.Quantity)
+                                        {
+                                            y.Selected=true;
+                                        }
+                                            
+                                        ListQuantity.Add(y);
+                                    }
+                                    @Html.Hidden("IDProduct", item.IDProduct)
+                                    @Html.Hidden("IDOrder", item.IDOrder)
+                                   
+                                    <p class="u-custom-font u-font-oswald u-text u-text-8">Số lượng:&nbsp;
+                                        @Html.DropDownList("Quantity",ListQuantity, new
+                                        {
+                                           type = "number",
+                                           @class = "i-input",
+                                           id = "quantity_" + @i + "",
+                                           onchange = "this.form.submit()",
+                                           @Value= item.Quantity,
+                                        })
+                                       
+                                        </p>
+                                    
+                                }
+                                <p class="u-custom-font u-font-oswald u-text u-text-9">Giá tổng: <span class="subtotal">@item.SubTotal.ToString("#,##", nfi)</span> vnđ</p>
+                            </div>
+                        </div>
+                        i++;
+                       
+                    }
+                  
+                </div>
+            </div>
+                        
+            }
+            <div class="u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-radius-20 u-shape-round u-white u-group-1">
+                <div class="u-container-layout u-container-layout-1">
+                    <div class="u-absolute-hcenter-lg u-absolute-hcenter-xl u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-2"></div>
+                    <div class="u-absolute-hcenter-lg u-absolute-hcenter-xl u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-3"></div>
+                    <img class="u-image u-image-contain u-image-default u-image-1" src="~/Image/Logo/Zeus.png" alt="" data-image-width="317" data-image-height="354" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">
+                    <p class="u-custom-font u-font-oswald u-text u-text-default u-text-2">Số lư​ợng:</p>
+                    <p class="u-align-right u-custom-font u-font-oswald u-text u-text-3"><span id="totalItems">@totalItems</span> sản phẩm</p>
+                   
+                    <p class="u-align-right u-custom-font u-font-oswald u-text u-text-4"><span id="total">@total.ToString("#,##", nfi)</span> vnđ</p>
+                    <p class="u-custom-font u-font-oswald u-text u-text-default u-text-5">Tổn​g:</p>
+                    <div class="u-expanded-width-lg u-expanded-width-xl u-form u-form-1">
+                        @using (Html.BeginForm("Cart", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div action="#" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form">
+                                <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-label-top u-form-group-1">
+                                    @if(ORD!=null)
+                                    {
+                                    @Html.HiddenFor(model => model.IdUser, new
+                                   {
+                                       @Value = ORD.IdUser
+
+                                   })
+
+                                    @Html.HiddenFor(model => model.IdOrder, new
+                                   {
+                                       @Value = ORD.IdOrder
+                                   })
+
+                                    @Html.HiddenFor(model => model.Total, new
+                                   {
+                                       @Value = total
+                                   })
+
+                                    @Html.HiddenFor(model => model.Date, new
+                                   {
+                                       @Value = DateTime.Now
+                                   })
+                                    @Html.HiddenFor(model => model.Delivery, new
+                                   {
+                                       @Value = ORD.Delivery
+                                   })
+
+                                    }
+
+                                    <label class="u-custom-font u-font-oswald u-label u-label-1">Phương thức thanh toán</label>
+                                    <div class="u-form-checkbox-group-wrapper">
+                                        <div class="u-input-row">
+                                            @Html.RadioButtonFor(model => model.Payment, "Banking", new
+                                       {
+                                           id = "field-f16e",
+                                           name = "checkbox[]"
+                                       })
+                                            <label class="u-custom-font u-font-oswald u-label u-label-2" for="field-f16e">Banking</label>
+                                        </div>
+                                        <div class="u-input-row">
+                                            @Html.RadioButtonFor(model => model.Payment, "COD", new
+                                       {
+                                           id = "field-0c02",
+                                           name = "checkbox[]"
+                                       })
+                                            <label class="u-custom-font u-font-oswald u-label u-label-3" for="field-0c02">COD</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="u-align-center u-form-group u-form-submit u-label-top u-form-group-2">
+                                    <a href="#" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-palette-3-base u-radius-10 u-btn-2 ">
+                                        Thanh toán<br>
+                                    </a>
+                                    <input type="submit" value="submit" class="u-form-control-hidden">
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Payment, "", new {style="color: red;text-align: center;font-weight: bold;",@class="text-center" })
+                                @Html.ValidationMessageFor(model => model.Total, "", new { style = "color: red;text-align: center;font-weight: bold;" })
+                            </div>
+
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    </body>
+</html>

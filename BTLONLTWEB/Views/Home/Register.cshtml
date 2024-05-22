@@ -1,0 +1,129 @@
+﻿@model BTLONLTWEB.Models.Information
+@{
+
+}
+
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Register">
+    <meta name="description" content="">
+    <title>Home</title>
+    <link rel="stylesheet" href="~/Content/nicepage.css" media="screen">
+    <link rel="stylesheet" href="~/Content/HideProdMenu.css" media="screen">
+    <link rel="stylesheet" href="~/Content/Register.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <script type="application/ld+json">
+        {
+        "name": ""
+        }
+    </script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+    </head>
+<body class="u-body u-overlap u-xl-mode" data-lang="en">
+    <section class="u-clearfix u-shading u-uploaded-video u-video u-video-cover u-section-1" id="sec-1f3f">
+        <div class="u-background-video u-expanded" style="filter: brightness(0.95);">
+            <div class="embed-responsive">
+                <video class="embed-responsive-item" data-autoplay="1" loop="" muted="1" autoplay="autoplay" playsinline="">
+                    <source src="~/Image/Logo/Green-Forest-Fox-Cartoon-Live-Wallpaper.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
+                <div class="u-layout">
+                    <div class="u-layout-row">
+                        <div class="u-align-center u-container-style u-layout-cell u-shape-rectangle u-size-60 u-layout-cell-1" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
+                            <div class="u-container-layout u-container-layout-1">
+                                <h2 class="u-custom-font u-font-montserrat u-text u-text-palette-3-base u-text-1">Register</h2>
+                                <div class="u-align-left u-form u-form-1">
+                                   @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+                                   {
+                                    <div class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" style="text-shadow:1px 1px black">
+                                        <div class="u-form-group u-form-name u-label-top">
+                                            <label for="name-5a14" class="u-label u-text-white" wfd-invisible="true">Username (*) </label>
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "@class = u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                                            @Html.TextBoxFor(model => model.Name, new
+                                        {
+                                            @class = "u-border-2 u-border-palette-3-base u-input u-input-rectangle u-radius-11 u-white",
+                                            placeholder = "Enter your Username",
+                                            id = "name-5a14",
+                                            name = "name",
+                                            style="height:40px"
+
+                                        })
+
+                                        </div>
+                                        <div class="u-form-email u-form-group u-label-top">
+                                            <label for="email-5a14" class="u-label u-text-white" wfd-invisible="true" style="text-shadow:1px 1px black">Email (*) </label>
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                                            @Html.TextBoxFor(model => model.Email, new
+                                        {
+                                            @class = "u-border-2 u-border-palette-3-base u-input u-input-rectangle u-radius-11 u-white",
+                                            placeholder = "Example@gmail.com",
+                                            id = "email-5a14",
+                                            name = "email",
+                                            style = "height:40px"
+
+                                        })
+
+                                        </div>
+                                        <div class="u-form-group u-form-partition-factor-2 u-label-top u-form-group-3">
+                                            <label for="text-8277" class="u-label u-text-white" style="text-shadow:1px 1px black">Password (*) </label><br />@Html.ValidationMessageFor(model => model.Password, "", new { @class = "u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                                            @Html.TextBoxFor(model => model.Password, new
+                                        {
+                                            @class = "u-border-2 u-border-palette-3-base u-input u-input-rectangle u-radius-11 u-white",
+                                            type = "password",
+                                            id = "text-8277",
+                                            name = "text-1",
+                                            style = "height:40px"
+
+                                        })
+
+                                        </div>
+                                        <div class="u-form-group u-form-partition-factor-2 u-label-top u-form-group-4">
+                                            <label for="text-eefb" class="u-label u-text-white" style="text-shadow:1px 1px black">Confirm Password (*) </label><br />@Html.ValidationMessageFor(model => model.ConfirmedPas, "", new { @class = "u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                                            @Html.TextBoxFor(model => model.ConfirmedPas, new
+                                        {
+                                            @class = "u-border-2 u-border-palette-3-base u-input u-input-rectangle u-radius-11 u-white",
+                                            type = "password",
+                                            id = "text-eefb",
+                                            name = "text",
+                                            style = "height:40px"
+                                        })
+
+                                        </div>
+                                        <div class="u-form-group u-form-input-layout-horizontal u-form-radiobutton u-label-top u-form-group-5">
+                                            <label for="text-eefb" class="u-label u-text-white" style="text-shadow:1px 1px black">Gender (*) </label>
+                                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                                            <div class="u-form-radio-button-wrapper">
+                                                <div class="u-input-row">
+                                                    @Html.RadioButtonFor(model => model.Gender, "M")<p class=" u-text-white u-label-5" style="font-weight:normal;font-size:1rem;text-shadow:1px 1px black"> Male</p>
+                                                </div>
+                                                <div class="u-input-row">
+                                                    @Html.RadioButtonFor(model => model.Gender, "F") <p class=" u-text-white u-label-5" style=" font-weight:normal;font-size:1rem";text-shadow:1px 1px black"> Female</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="u-align-left u-form-group u-form-submit u-label-top">
+                                            <input type="submit" value="submit" class="u-form-control-hidden">
+                                            <a class="u-active-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-black u-palette-3-base u-radius-30 u-btn-1">Submit</a>
+                                        </div>
+                                    </div>
+                                   }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

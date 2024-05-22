@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuanLyBanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="IdBrand" />
+          </Key>
+          <Property Name="IdBrand" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="NameBrand" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Catalog">
+          <Key>
+            <PropertyRef Name="IdCatalog" />
+          </Key>
+          <Property Name="IdCatalog" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="NameCatalog" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="IdImage" />
+          </Key>
+          <Property Name="IdImage" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="FileImage" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImageDetails">
+          <Key>
+            <PropertyRef Name="IdImage" />
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdImage" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="IdProduct" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="ImageType" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="IdUser" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Total" Type="float" />
+          <Property Name="Delivery" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Payment" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdOrder" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="IdProduct" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdProduct" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="NameProduct" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdCatalog" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="IdBrand" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="char" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="char" MaxLength="11" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="Gender" Type="char" MaxLength="2" />
+          <Property Name="IdAvatar" Type="char" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Member" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalSpent" Type="float" />
+          <Property Name="TypeUser" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Receiver" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ImageDetails_Image">
+          <End Role="Image" Type="Self.Image" Multiplicity="1" />
+          <End Role="ImageDetails" Type="Self.ImageDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="IdImage" />
+            </Principal>
+            <Dependent Role="ImageDetails">
+              <PropertyRef Name="IdImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageDetails_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ImageDetails" Type="Self.ImageDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="ImageDetails">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OderDetails_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="IdOrder" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OderDetails_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="IdBrand" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Catalog">
+          <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalog">
+              <PropertyRef Name="IdCatalog" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdCatalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyBanHangModelStoreContainer">
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Catalog" EntityType="Self.Catalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageDetails" EntityType="Self.ImageDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ImageDetails_Image" Association="Self.FK_ImageDetails_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="ImageDetails" EntitySet="ImageDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageDetails_Product" Association="Self.FK_ImageDetails_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ImageDetails" EntitySet="ImageDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OderDetails_Order" Association="Self.FK_OderDetails_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OderDetails_Product" Association="Self.FK_OderDetails_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Catalog" Association="Self.FK_Product_Catalog">
+            <End Role="Catalog" EntitySet="Catalog" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanLyBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="IdBrand" />
+          </Key>
+          <Property Name="IdBrand" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NameBrand" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Catalog">
+          <Key>
+            <PropertyRef Name="IdCatalog" />
+          </Key>
+          <Property Name="IdCatalog" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NameCatalog" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Catalog" FromRole="Catalog" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="IdImage" />
+          </Key>
+          <Property Name="IdImage" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FileImage" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ImageDetails" Relationship="Self.FK_ImageDetails_Image" FromRole="Image" ToRole="ImageDetails" />
+        </EntityType>
+        <EntityType Name="ImageDetail">
+          <Key>
+            <PropertyRef Name="IdImage" />
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdImage" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IdProduct" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ImageType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Image" Relationship="Self.FK_ImageDetails_Image" FromRole="ImageDetails" ToRole="Image" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ImageDetails_Product" FromRole="ImageDetails" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IdUser" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Delivery" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Payment" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OderDetails_Order" FromRole="Order" ToRole="OrderDetails" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdOrder" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IdProduct" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OderDetails_Order" FromRole="OrderDetails" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OderDetails_Product" FromRole="OrderDetails" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdProduct" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NameProduct" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCatalog" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IdBrand" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="Catalog" Relationship="Self.FK_Product_Catalog" FromRole="Product" ToRole="Catalog" />
+          <NavigationProperty Name="ImageDetails" Relationship="Self.FK_ImageDetails_Product" FromRole="Product" ToRole="ImageDetails" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OderDetails_Product" FromRole="Product" ToRole="OrderDetails" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="IdAvatar" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Member" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalSpent" Type="Double" />
+          <Property Name="TypeUser" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_User" FromRole="User" ToRole="Order" />
+          <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Product_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="IdBrand" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Catalog">
+          <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalog">
+              <PropertyRef Name="IdCatalog" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdCatalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageDetails_Image">
+          <End Role="Image" Type="Self.Image" Multiplicity="1" />
+          <End Role="ImageDetails" Type="Self.ImageDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="IdImage" />
+            </Principal>
+            <Dependent Role="ImageDetails">
+              <PropertyRef Name="IdImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageDetails_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ImageDetails" Type="Self.ImageDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="ImageDetails">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OderDetails_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="IdOrder" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OderDetails_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyBanHangEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brands" EntityType="Self.Brand" />
+          <EntitySet Name="Catalogs" EntityType="Self.Catalog" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="ImageDetails" EntityType="Self.ImageDetail" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Catalog" Association="Self.FK_Product_Catalog">
+            <End Role="Catalog" EntitySet="Catalogs" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageDetails_Image" Association="Self.FK_ImageDetails_Image">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="ImageDetails" EntitySet="ImageDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageDetails_Product" Association="Self.FK_ImageDetails_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ImageDetails" EntitySet="ImageDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OderDetails_Order" Association="Self.FK_OderDetails_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OderDetails_Product" Association="Self.FK_OderDetails_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanLyBanHangModelStoreContainer" CdmEntityContainer="QuanLyBanHangEntities">
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="QuanLyBanHangModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="NameBrand" ColumnName="NameBrand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catalogs">
+            <EntityTypeMapping TypeName="QuanLyBanHangModel.Catalog">
+              <MappingFragment StoreEntitySet="Catalog">
+                <ScalarProperty Name="IdCatalog" ColumnName="IdCatalog" />
+                <ScalarProperty Name="NameCatalog" ColumnName="NameCatalog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="QuanLyBanHangModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="IdImage" ColumnName="IdImage" />
+                <ScalarProperty Name="FileImage" ColumnName="FileImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageDetails">
+            <EntityTypeMapping TypeName="QuanLyBanHangModel.ImageDetail">
+              <MappingFragment StoreEntitySet="ImageDetails">
+                <ScalarProperty Name="IdImage" ColumnName="IdImage" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="ImageType" ColumnName="ImageType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="QuanLyBanHangModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="QuanLyBanHangModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="QuanLyBanHangModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="NameProduct" ColumnName="NameProduct" />
+                <ScalarProperty Name="IdCatalog" ColumnName="IdCatalog" />
+                <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QuanLyBanHangModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IdAvatar" ColumnName="IdAvatar" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Member" ColumnName="Member" />
+                <ScalarProperty Name="TotalSpent" ColumnName="TotalSpent" />
+                <ScalarProperty Name="TypeUser" ColumnName="TypeUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

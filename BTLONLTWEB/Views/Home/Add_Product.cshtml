@@ -1,0 +1,258 @@
+﻿@model BTLONLTWEB.Models.Add_Product
+
+@{
+        ViewData["Title"] = "Customer";
+        var ListBrand = new List<SelectListItem>();
+        foreach (var item in ViewBag.ListBrand)
+        {
+            var i = new SelectListItem
+            {
+                Text = item.NameBrand,
+                Value = item.IdBrand
+            };
+            ListBrand.Add(i);
+        }
+        var ListCatalog = new List<SelectListItem>();
+        foreach (var item in ViewBag.ListCatalog)
+        {
+            var i = new SelectListItem
+            {
+                Text = item.NameCatalog,
+                Value = item.IdCatalog
+            };
+            ListCatalog.Add(i);
+        }
+        var announce = ViewBag.Anounce;
+}
+
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta name="keywords" content="FORM NHẬP SẢN PHẨM MỚI">
+        <meta name="description" content="">
+        <title>Page 4</title>
+        <link rel="stylesheet" href="~/Content/Add_Products.css" media="screen">
+        <link rel="stylesheet" href="~/Content/HideProdMenu.css" media="screen">
+        <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+        <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers:400">
+        <script type="application/ld+json">
+            {
+            "name": "",
+            "logo": "images/image__1_-removebg.png",
+            "sameAs": []
+            }
+        </script>
+        <meta name="theme-color" content="#478ac9">
+        <meta property="og:title" content="Page 4">
+        <meta property="og:type" content="website">
+    </head>
+<body class="u-body u-xl-mode" data-lang="en">
+    @if(announce!=null&&announce=="0")
+    {
+        <div class="annouce">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Thành công!</strong>
+        </div>
+    }
+    else
+    {
+           if(announce=="1")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Không thành công!</strong>
+            </div>
+        }
+    }
+     
+    <section class="u-align-center u-clearfix u-image u-uploaded-video u-video-contain-lg u-video-contain-md u-video-contain-sm u-video-contain-xs u-section-1" id="carousel_c8a8" data-image-width="1920" data-image-height="1080">
+        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+            <div class="u-align-center u-border-1 u-border-black u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-radius-49 u-shape-round u-group-1">
+                <div class="u-container-layout u-container-layout-1">
+                    <h2 class="u-custom-font u-text u-text-body-alt-color u-text-1">FORM NHẬP SẢN PHẨM MỚI</h2>
+                    <div class="u-form u-form-1">
+                    @using (Html.BeginForm("Add_Product", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="email" name="form">
+                            <div class="u-form-group u-form-name u-form-partition-factor-2 u-label-top">
+                                <label for="name-3b9a" class="u-label u-text-white u-label-1">Tên sản phẩm (*)</label>@Html.ValidationMessageFor(model => model.NameProduct, "", new { @class = "text-danger", style = "color:red;font-weight:bold;text-shadow: 1px 1px black;" })
+                                @Html.TextBoxFor(model => model.NameProduct, new
+                                {
+                                    @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-1",
+                                    type = "text",
+                                    placeholder = "Nhập tên sản phẩm mới",
+                                    id = "name-3b9a",
+                                    
+                                })
+                                
+                            </div>
+                            <div class="u-form-group u-form-partition-factor-2 u-form-select u-label-top u-form-group-2">
+                                <label for="select-48f8" class="u-label u-text-white u-label-2">Tình trạng (*) </label>@Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger", style = "color:red;font-weight:bold;text-shadow: 1px 1px black;" })
+                                <div class="u-form-select-wrapper">
+                                    @Html.DropDownListFor(model => model.State, new List<SelectListItem>
+                                    {
+                                     new SelectListItem{Text ="MỚI NHẬP", Value="MỚI NHẬP"},
+                                     new SelectListItem{Text ="CÒN HÀNG", Value="CÒN HÀNG"},
+                                     new SelectListItem{Text ="HẾT HÀNG", Value="HẾT HÀNG"},
+                                     new SelectListItem{Text ="ẨN", Value="ẨN"},
+
+                                    }, new
+                                    {
+                                        @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-2",
+                                        id = "select-48f8",
+                                        name = "select-2",
+                                        
+                                    })
+                                    
+                                    <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                                </div>
+                            </div>
+                            <div class="u-form-group u-form-partition-factor-2 u-form-select u-label-top u-form-group-3">
+                                <label for="select-1ae3" class="u-label u-text-white u-label-3">Loại sản phẩm (*) </label>@Html.ValidationMessageFor(model => model.IdCatalog, "", new { @class = "text-danger", style = "color:red;font-weight:bold;text-shadow: 1px 1px black; " })
+                                <div class="u-form-select-wrapper">
+                                    @Html.DropDownListFor(model => model.IdCatalog, ListCatalog, new
+                                   {
+                                       @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-3",
+                                       id = "select-1ae3",
+                                       name = "select"
+                                   })
+                                    
+                                    <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                                </div>
+                            </div>
+                            <div class="u-form-group u-form-partition-factor-2 u-form-select u-label-top u-form-group-4">
+                                <label for="select-38a0" class="u-label u-text-white u-label-4">Thương hiệu (*) </label>@Html.ValidationMessageFor(model => model.IdBrand, "", new { @class = "text-danger", style = "color:red;font-weight:bold;text-shadow: 1px 1px black; " })
+                                <div class="u-form-select-wrapper">
+                                    @Html.DropDownListFor(model => model.IdBrand, ListBrand, new 
+                                    {
+                                        @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-4",
+                                        id = "select-38a0",
+                                        name = "select-1",
+                                        
+                                    })
+                                   
+                                    <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                                </div>
+                            </div>
+                            <div class="u-form-group u-form-partition-factor-3 u-label-top u-form-group-5">
+                                <label for="text-f6e9" class="u-label u-text-white u-label-5">Giá (*) </label>@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger", style = "color:red;font-weight:bold;text-shadow: 1px 1px black; " })
+                                @Html.TextBoxFor(model => model.Price, new
+                                {
+                                    @id = "text-f6e9",
+                                    @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-5",
+                                    @step = "10000",
+                                    @min = "10000",
+                                    @max = "1000000000",
+                                    @onkeyup = "javascript:this.value=Comma(this.value);",
+                                    type = "text",
+                                    placeholder = "Nhập giá sản phẩm",
+                                    name = "text"
+                                })
+
+                                
+                            </div>
+                            <div class="u-form-group u-form-partition-factor-3 u-label-top u-form-group-6">
+                                <label for="text-2bef" class="u-label u-text-white u-label-6">Giảm giá </label>@Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger", style = "color:red;font-weight:bold;text-shadow: 1px 1px black; " })
+                                @Html.TextBoxFor(model => model.Discount, new
+                                {
+
+                                    @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-6",
+                                    @type = "number",
+                                    @step = "0.01",
+                                    @min = "0.0",
+                                    @max = "1.0",
+                                    @Value = 0.0,
+                                    placeholder = "Nhập giảm giá",
+                                    id = "text-2bef",
+                                    name="text-1",
+
+                                })
+                                
+                                
+                            </div>
+                            <div class="u-form-group u-form-partition-factor-3 u-label-top u-form-group-7">
+                                <label for="text-769a" class="u-label u-text-white u-label-7">Số lượng(*)</label>@Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger", style = "color:red;font-weight:bold;text-shadow: 1px 1px black; " })
+                                @Html.TextBoxFor(model => model.Quantity, new
+                                {
+                                    @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-7",
+                                    @type = "number",
+                                    @step = "1",
+                                    @min = "1",
+                                    @max = "100",
+                                    placeholder = "Nhập số lượng",
+                                    id = "text-769a",
+                                    name = "text-4"
+                                })
+                               
+                            </div>
+                            <div class="u-form-group u-form-message u-label-top">
+                                <label for="message-3b9a" class="u-label u-text-white u-label-8">Mô tả sản phẩm</label>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger", style = "color:red;font-weight:bold;text-shadow: 1px 1px black;" })
+                                @Html.TextAreaFor(model => model.Description, new 
+                                {
+                                    @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-8",
+                                    placeholder = "Nhập mô tả sản phẩm",
+                                    rows = "5",
+                                    cols = "50",
+                                    id = "message-3b9a",
+                                    name = "message",
+                                })
+                                
+                            </div>
+                            <div class="u-form-group u-form-partition-factor-2 u-label-top u-form-group-9">
+                                <label for="text-ecf2" class="u-label u-text-white u-label-9">Ảnh bìa (*)</label>@Html.ValidationMessageFor(model => model.Image, "", new { @class = "u-label", style = "color:red;font-weight:bold;text-shadow: 1px 1px black;" })
+                                @Html.TextBoxFor(model => model.Image, new
+                                {
+                                    @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-9",
+                                    @accept = "image/png, image/jpg, image/jpeg",
+                                    type = "file",
+                                    id = "text-ecf2",
+                                    name = "text-2",
+                                })
+                                
+                            </div>
+                            <div class="u-form-group u-form-partition-factor-2 u-label-top u-form-group-10">
+                                <label for="text-97f5" class="u-label u-text-white u-label-10">Ảnh slide (*)</label>@Html.ValidationMessageFor(model => model.SlideImage, "", new { @class = "u-label", style = "color:red;font-weight:bold;text-shadow: 1px 1px black;" })
+                                @Html.TextBoxFor(model => model.SlideImage, new
+                                {
+                                    @class = "u-border-2 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-10",
+                                    @accept = "image/png, image/jpg, image/jpeg",
+                                    type = "file",
+                                    @multiple = "multiple",
+                                    id = "text-97f5",
+                                    name = "text-3",
+                                    
+                                })
+                                
+                            </div>
+                            <div class="u-align-center u-form-group u-form-submit u-label-top">
+                                <a href="#" class="u-active-white u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-5-light-2 u-radius-10 u-text-active-black u-text-hover-black u-white u-btn-1">
+                                    Thêm<br>
+                                </a>
+                                <input type="submit" value="submit" class="u-form-control-hidden">
+                            </div>
+                           
+                        </div>
+                    }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<script>
+    function Comma(Num) {
+        Num += '';
+        Num = Num.replace('.', ''); Num = Num.replace('.', ''); Num = Num.replace('.', '');
+        Num = Num.replace('.', ''); Num = Num.replace('.', ''); Num = Num.replace('.', '');
+        x = Num.split(',');
+        x1 = x[0];
+        x2 = x.length > 1 ? ',' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1))
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        return x1 + x2;
+    }
+</script>

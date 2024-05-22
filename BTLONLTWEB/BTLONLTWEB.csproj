@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B3714D04-669F-4101-B9C3-EDE1C5D275C9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BTLONLTWEB</RootNamespace>
+    <AssemblyName>BTLONLTWEB</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Add_Product.cs" />
+    <Compile Include="Models\Brand.cs">
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CatalogName.cs" />
+    <Compile Include="Models\BrandName.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Catalog.cs">
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChangeInform.cs" />
+    <Compile Include="Models\DisplayProd.cs" />
+    <Compile Include="Models\Function.cs" />
+    <Compile Include="Models\HoaDon.cs" />
+    <Compile Include="Models\Image.cs">
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ImageDetail.cs">
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ImagePath.cs" />
+    <Compile Include="Models\Information.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Details.cs" />
+    <Compile Include="Models\ProductDetails.cs" />
+    <Compile Include="Models\Receipt.cs" />
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyBanHang.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHang.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyBanHang.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyBanHang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHang.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Receiver_Form.cs" />
+    <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\RestorePassword.cs" />
+    <Compile Include="Models\User.cs">
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\QuanLyBanHang.mdf" />
+    <Content Include="App_Data\QuanLyBanHang_log.ldf">
+      <DependentUpon>QuanLyBanHang.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\About.css" />
+    <Content Include="Content\Account.css" />
+    <Content Include="Content\Add_Image.css" />
+    <Content Include="Content\Add_Products.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BrandList.css" />
+    <Content Include="Content\Cart.css" />
+    <Content Include="Content\ChiTietHoaDon.css" />
+    <Content Include="Content\Details.css" />
+    <Content Include="Content\Error.css" />
+    <Content Include="Content\HideProdMenu.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Search_Products.css" />
+    <Content Include="Content\Login_Form.css" />
+    <Content Include="Content\Keyboard_Products.css" />
+    <Content Include="Content\Mouse_Products.css" />
+    <Content Include="Content\nicepage.css" />
+    <Content Include="Content\Monitor_Products.css" />
+    <Content Include="Content\PC_Products.css" />
+    <Content Include="Content\QL_HD.css" />
+    <Content Include="Content\Receiver_Form.css" />
+    <Content Include="Content\Register.css" />
+    <Content Include="Content\RestorePassword.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Slide.css" />
+    <Content Include="Content\Success.css" />
+    <Content Include="Content\Table.css" />
+    <Content Include="Content\UserDetails.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\MxRegular-p76qD.ttf" />
+    <Content Include="Image\Ads\amd-ryzen-7000-series.png" />
+    <Content Include="Image\Ads\intel-13th-gen-3.png" />
+    <Content Include="Image\Ads\nvidia-40-series.png" />
+    <Content Include="Image\Avatars\AVA00001.jpg" />
+    <Content Include="Image\Avatars\AVA00001.png" />
+    <Content Include="Image\Avatars\AVA00012.jpg" />
+    <Content Include="Image\Avatars\AVA00020.jpg" />
+    <Content Include="Image\Avatars\AVA00022.jpg" />
+    <Content Include="Image\Avatars\AVA00024.jpg" />
+    <Content Include="Image\Avatars\Female.jpg" />
+    <Content Include="Image\Avatars\Male.jpg" />
+    <Content Include="Image\Logo\33308.png" />
+    <Content Include="Image\Logo\citysunset.mp4" />
+    <Content Include="Image\Logo\Delete.png" />
+    <Content Include="Image\Logo\19010.jpg" />
+    <Content Include="Image\Logo\404.png" />
+    <Content Include="Image\Logo\545680.png" />
+    <Content Include="Image\Logo\5703931.png" />
+    <Content Include="Image\Logo\637789173642585147_untitled-2.png" />
+    <Content Include="Image\Logo\Background.png" />
+    <Content Include="Image\Logo\Best-Online-Games-for-PC-1.png" />
+    <Content Include="Image\Logo\Cart.png" />
+    <Content Include="Image\Logo\Default.png" />
+    <Content Include="Image\Logo\Fishing-for-Stars.mp4" />
+    <Content Include="Image\Logo\Green-Forest-Fox-Cartoon-Live-Wallpaper.mp4" />
+    <Content Include="Image\Logo\handshake-solid.svg" />
+    <Content Include="Image\Logo\headset-solid.svg" />
+    <Content Include="Image\Logo\Intel-2020-New.png" />
+    <Content Include="Image\Logo\kindpng_14195301.png" />
+    <Content Include="Image\Logo\lo73l560-logitech-logo-logitech-g-logo-logok-in-2021-monogram-logo-logo-logitech.png" />
+    <Content Include="Image\Logo\money-bill-1-wave-solid.svg" />
+    <Content Include="Image\Logo\8-Bit-Night-City.mp4" />
+    <Content Include="Image\Logo\Nvidia-Vertical-Black-Logo.wine.png" />
+    <Content Include="Image\Logo\pngwing.com.png" />
+    <Content Include="Image\Logo\pngwing.com1.png" />
+    <Content Include="Image\Logo\Register_Background.jpg" />
+    <Content Include="Image\Logo\Road-90458.mp4" />
+    <Content Include="Image\Logo\SEA.mp4" />
+    <Content Include="Image\Logo\Snapinsta.app_72332108_136351061054926_1289704093991250084_n.mp4" />
+    <Content Include="Image\Logo\SUNSET.mp4" />
+    <Content Include="Image\Logo\northernlights.mp4" />
+    <Content Include="Image\Logo\Upload.png" />
+    <Content Include="Image\Logo\wallpaperflare.com_wallpaper13.jpg" />
+    <Content Include="Image\Logo\wallpaperflare.com_wallpaper24.jpg" />
+    <Content Include="Image\Logo\Whale-Airship.mp4" />
+    <Content Include="Image\Logo\Zeus.png" />
+    <Content Include="Image\Products\pc-tong-3-02-20221107144218-xmybz.png" />
+    <Content Include="Image\Products\pc-tong-3-03-20221107144219-sxls4.png" />
+    <Content Include="Image\Products\pc-tong-3-04-20221107144219-3j-8k.png" />
+    <Content Include="Image\Products\pc-tong-3-05-20221111023014-nu0fh.png" />
+    <Content Include="Image\Products\pc-tong-3-06-20221107144219-bduhy.png" />
+    <Content Include="Models\QuanLyBanHang.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyBanHang.edmx</DependentUpon>
+      <LastGenOutput>QuanLyBanHang.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QuanLyBanHang.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyBanHang.edmx</DependentUpon>
+      <LastGenOutput>QuanLyBanHang.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\UserManagement.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\QuanLyBanHang.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuanLyBanHang.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QuanLyBanHang.edmx.diagram">
+      <DependentUpon>QuanLyBanHang.edmx</DependentUpon>
+    </Content>
+    <Content Include="Image\Logo\desktop.ini" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\nicepage.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\Slide.js" />
+    <Content Include="Scripts\Slide2.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Account.cshtml" />
+    <Content Include="Views\Home\Add_Image.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\DS_HinhAnhSanPham.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Product_PC.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Add_Product.cshtml" />
+    <Content Include="Views\Home\Cart.cshtml" />
+    <Content Include="Views\Home\Receiver_Form.cshtml" />
+    <Content Include="Views\Home\Success.cshtml" />
+    <Content Include="Views\Home\DS_Brand.cshtml" />
+    <Content Include="Views\Home\DS_Catalog.cshtml" />
+    <Content Include="Views\Home\QL_HoaDon.cshtml" />
+    <Content Include="Views\Home\ChiTietHoaDon.cshtml" />
+    <Content Include="Views\Home\Product_Monitor.cshtml" />
+    <Content Include="Views\Home\Product_Mouse.cshtml" />
+    <Content Include="Views\Home\Product_Keyboard.cshtml" />
+    <Content Include="Views\Home\RestorePassword.cshtml" />
+    <Content Include="Views\Home\UserManagement.cshtml" />
+    <Content Include="Views\Home\Product_Search.cshtml" />
+    <Content Include="Views\Home\UserDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Image\Temp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58941</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58941/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,202 @@
+﻿@model BTLONLTWEB.Models.ChangeInform
+@{
+    BTLONLTWEB.Models.User account = Session["Account"] as BTLONLTWEB.Models.User;
+    var avatar = account.IdAvatar;
+    var phone="";
+    var address = "";
+    var path="";
+}
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Vui lòng chọn ảnh đại diện">
+    <meta name="description" content="">
+    <title>Page 3</title>
+    <link rel="stylesheet" href="~/Content/HideProdMenu.css" media="screen">
+    <link rel="stylesheet" href="~/Content/Account.css" media="screen">
+    <meta name="generator" content="Nicepage 4.21.5, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers:400">
+
+    <script type="application/ld+json">
+        {
+        "name": "",
+        "sameAs": []
+        }
+    </script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Page 3">
+    <meta property="og:type" content="website">
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-clearfix u-image u-shading u-section-1" id="carousel_ac0d" data-image-width="3840" data-image-height="2160">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            @if (Session["file"] == null)
+            {
+                path = avatar.ToString();
+            }
+            else
+            {
+                path = Session["file"].ToString();
+
+            }
+                <div alt="" class="u-border-2 u-border-palette-3-base u-image u-image-circle u-preserve-proportions u-image-1" data-image-width="1280" data-image-height="1280" style="background-image:url(@Url.Content(path)) "></div>
+            <br/>
+            
+            <span class="u-image u-image-circle u-preserve-proportions u-image-1" style="color:white;height:10px;margin-top:10px;margin-bottom:40px;text-align:center;font-weight:bold">Vui lòng chọn ảnh trước khi thay đổi thông tin!</span>
+            <div class="u-expanded-width-xs u-form u-form-1">
+                @using (Html.BeginForm("Account", "Home", FormMethod.Post))
+                {
+                <div action="#" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+                    <p class="u-align-center u-custom-font u-form-group u-form-text u-text u-text-palette-3-base u-text-1">cập nhật thông tin tài khoản</p>
+                    <div class="u-form-group u-form-name">
+                        <label for="name-4c18" class="u-label">Username</label>
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "@class = u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                        @Html.TextBoxFor(model => model.Name, new
+                                        {
+                                            @class = "u-grey-5 u-input u-input-rectangle u-radius-8",
+                                            placeholder = "Nhập username mới",
+                                            id = "name-4c18",
+                                            name = "name",
+                                            @Value=account.Name
+                                        })
+                    </div>
+                    <div class="u-form-email u-form-group">
+                        <label for="email-4c18" class="u-label">Email</label>
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                        @Html.TextBoxFor(model => model.Email, new
+                                       {
+                                            @class = "u-grey-5 u-input u-input-rectangle u-radius-8",
+                                            placeholder = "Example@gmail.com",
+                                            id = "email-4c18",
+                                            name = "email",
+                                            @Value = account.Email.Trim()
+                                        })
+                    </div>
+                    <div class="u-form-group u-form-group-4">
+                        <label for="text-7e3c" class="u-label">Phone number</label>
+                        @if(account.PhoneNumber!=null)
+                        {
+                            phone = account.PhoneNumber.Trim();
+                        }
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                        @Html.TextBoxFor(model => model.PhoneNumber, new
+                        {
+                            @class = "u-grey-5 u-input u-input-rectangle u-radius-8",
+                            placeholder = "0931354688",
+                            id = "text-7e3c",
+                            name = "",
+                            @Value = phone
+                        })
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-5">
+                        <label for="text-d985" class="u-label">Old Password</label>@Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                        @Html.TextBoxFor(model => model.OldPassword, new
+                        {
+                            @class = "u-grey-5 u-input u-input-rectangle u-radius-8",
+                            type = "password",
+                            id = "text-d985",
+                            name = "text-1",
+                        })
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-6">
+                        <label for="text-0caf" class="u-label">New Password</label>@Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "u-label", style = "color:red; font-weight:bold;text-shadow:1px 1px black" })
+                        @Html.TextBoxFor(model => model.NewPassword, new
+                        {
+                            @class = "u-grey-5 u-input u-input-rectangle u-radius-8",
+                            type = "password",
+                            id = "text-0caf",
+                            name = "text-2",
+                        })
+                    </div>
+                    <div class="u-form-group u-form-message u-form-group-7">
+                        @if (account.Address != null)
+                        {
+                            address = account.Address;
+                        }
+                        <label for="address-ed88" class="u-label">Address</label>
+                        
+                        @Html.TextAreaFor(model => model.Address, new
+                        {
+                            @class = "u-grey-5 u-input u-input-rectangle u-radius-8",
+                            id = "address-ed88",
+                            name = "address",
+                            
+                        })
+                    </div>
+                    @Html.TextBoxFor(model => model.Path, new
+                    {
+                        style = "display:none",
+                        type = "text",
+                        @Value=path
+                    })
+                    @Html.TextBoxFor(model => model.ID, new
+                    {
+                        type = "text",
+                        style = "display:none",
+                        @Value = @account.IdUser.ToString()
+                    })
+                    <div class="u-align-left u-form-group u-form-submit">
+                        <a href="#" class="u-active-black u-border-2 u-border-active-black u-border-hover-palette-3-light-2 u-border-palette-3-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-3-light-2 u-palette-3-base u-radius-8 u-text-active-palette-3-base u-text-hover-palette-5-dark-3 u-text-white u-btn-1">Submit</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                    </div>
+                   
+                </div>
+            }
+            </div>
+            <a href="#sec-c2d5" class="u-border-none u-btn u-button-style u-dialog-link u-hover-feature u-none u-btn-2">
+                <span class="u-file-icon u-icon u-text-palette-3-base u-icon-1"><img src="~/Image/Logo/Upload.png" alt=""></span>
+            </a>
+        </div>
+        
+    </section>
+
+
+    @using (Html.BeginForm("ImageUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <section class="u-align-center u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-dialog-section-4" id="sec-c2d5">
+            <div class="u-container-style u-dialog u-grey-5 u-radius-22 u-shape-round u-dialog-1">
+                <div class="u-container-layout u-container-layout-1">
+                    <h2 class="u-align-center u-custom-font u-text u-text-default u-text-1">Vui lòng chọn ảnh đại diện</h2>
+                    <div class="u-form u-form-1">
+                        <form action="#" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
+                            <div class="u-form-email u-form-group">
+                                <label for="name-4c18" class="u-label">Chọn hình ảnh</label>
+                                @Html.TextBoxFor(model => model.Path, new
+                                {
+                                    @class = "u-border-2 u-border-palette-4-light-3 u-grey-5 u-input u-input-rectangle u-radius-10",
+                                    id = "email-4c18",
+                                    type = "file",
+                                    @accept = "image/png, image/jpg, image/jpeg"
+                                })
+                                @Html.ValidationMessageFor(model => model.Path, "", new { @class = "u-label", style = "color:red" })
+                                @Html.TextBoxFor(model => model.ID, new
+                                {
+                                    type = "text",
+                                    style="display:none",
+                                    @Value=@account.IdUser.ToString()
+                                })
+                                <div class="u-align-right u-form-group u-form-submit">
+                                    <a href="#" class="u-black u-border-1 u-border-black u-border-hover-black u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-3-base u-radius-12 u-btn-1">Submit</a>
+                                    <input type="submit" value="submit" class="u-form-control-hidden">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button class="u-dialog-close-button u-icon u-text-grey-40 u-icon-1">
+                    <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 348.333 348.334" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9711"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 348.333 348.334" x="0px" y="0px" id="svg-9711" style="enable-background:new 0 0 348.333 348.334;"><g><path d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z"></path>
+                    </g></svg>
+                </button>
+            </div>
+        </section>
+    }
+</body>
+
+</html>
+<script>
+    var x = @Html.Raw(Json.Encode(address )) ;
+    document.getElementById("address-ed88").value = x;
+</script>

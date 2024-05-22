@@ -1,0 +1,87 @@
+﻿@model BTLONLTWEB.Models.ImagePath
+@{
+    var i=ViewBag.Announce;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="~/Content/HideProdMenu.css" media="screen">
+    <meta name="keywords" content="​FORM hình ảnh">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="~/Content/Add_Image.css" media="screen">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers:400">
+
+
+</head>
+<body>
+    @if(i!=null&&i=="1")
+    {
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Không thành công!</strong> 
+        </div>
+    }
+    else
+    {
+        if(i=="0")
+        {
+            <div class="annouce">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                 Thêm Thành công
+            </div>
+        }
+        if (i == "2")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Không thành công!</strong>  Ảnh sản phẩm đã tồn tại trong dữ liệu!
+            </div>
+        }
+        if (i == "3")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Không thành công!</strong> Định dạng ảnh phải là .jpg .png .jpeg!
+            </div>
+        }
+    }
+    @using (Html.BeginForm("Add_Image", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <section class="u-align-center u-clearfix u-gradient u-section-1" id="carousel_df6e">
+            <div class="u-clearfix u-sheet u-sheet-1">
+                <div class="u-align-center u-container-style u-group u-palette-3-base u-radius-30 u-shape-round u-group-1">
+                    <div class="u-container-layout u-container-layout-1">
+                        <h2 class="u-custom-font u-text u-text-default u-text-1"> FORM nhập hình ảnh</h2>
+                        <div class="u-expanded-width u-form u-form-1">
+                            <form action="#" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
+                                <div class="u-form-email u-form-group">
+                                    <label for="name-4c18" class="u-label">Chọn hình ảnh</label>
+                                    @Html.TextBoxFor(model => model.Path, new
+                                   {
+                                       @class = "u-border-2 u-border-palette-4-light-3 u-grey-5 u-input u-input-rectangle u-radius-10",
+                                       id = "email-4c18",
+                                       type = "file",
+                                       @accept = "image/png, image/jpg, image/jpeg"
+                                   })
+                                    @Html.ValidationMessageFor(model => model.Path, "", new { @class = "u-label",  style="color:red" })
+
+                                </div>
+                                <div class="u-align-center u-form-group u-form-submit">
+                                    <a href="#" class="u-active-grey-15 u-border-5 u-border-active-grey-5 u-border-grey-15 u-border-hover-grey-10 u-btn u-btn-round u-btn-submit u-button-style u-grey-5 u-hover-grey-10 u-radius-10 u-btn-1">Nhập hình ảnh</a>
+                                    <input type="submit" value="submit" class="u-form-control-hidden">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+
+</body>
+</html>

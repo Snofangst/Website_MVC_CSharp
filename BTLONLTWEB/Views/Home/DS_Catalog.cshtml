@@ -1,0 +1,191 @@
+﻿@model BTLONLTWEB.Models.CatalogName
+
+@{
+    var i = ViewBag.Announce2;
+    var list = ViewBag.CatalogList as List<BTLONLTWEB.Models.Catalog>;
+}
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="MUA HÀNG THÀNH CÔNG">
+    <meta name="description" content="">
+    <title>DS_BRAND</title>
+    <link rel="stylesheet" href="~/Content/BrandList.css" media="screen">
+    <link rel="stylesheet" href="~/Content/HideProdMenu.css" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers:400">
+    <meta name="theme-color" content="#478ac9">
+    <script>
+        function getdata(modelvalue)
+        {
+            document.getElementById("idbrand").value = modelvalue;
+        }
+    </script>
+
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+    @if (i != null && i == "1")
+    {
+        <div class="annouce">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Thành công!</strong>
+        </div>
+    }
+    else
+    {
+        if (i == "0")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Không thành công! Catalog @Model.Name đã tồn tại!</strong>
+            </div>
+        }
+        if (i == "2")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Không thành công! Catalog @Model.Name đang được dùng không thể xóa!</strong>
+            </div>
+        }
+        if (i == "3")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Không thành công! Vui lòng nhập tên Catalog!</strong>
+            </div>
+        }
+    }
+
+    <section class="u-align-center u-clearfix u-section-1" id="sec-9a9b">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <h2 class="u-custom-font u-text u-text-default-lg u-text-default-xl u-text-palette-3-base u-text-1">DANH SÁCH CÁC LOẠI SẢN PHẨM </h2>
+            <div class="u-form u-form-1">
+                @using (Html.BeginForm("DS_Catalog", "Home", FormMethod.Post))
+                {
+                    @Html.Hidden("feature", "", new { @Value = "Add" })
+                    string id = "";
+                    if (list == null)
+                    {
+                        id = "CAT" + String.Format("{0:D6}", 1);
+                    }
+                    else
+                    {
+                        int max = list.ToList().Max(p => Int32.Parse(p.IdCatalog.Remove(0, 3)));
+                        id = "CAT" + String.Format("{0:D6}", max + 1);
+                    }
+                    @Html.HiddenFor(model => model.ID, new
+                    {
+                        @Value = id
+                    })
+                    <div class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px;" source="email" name="form">
+                        <div class="u-form-group u-form-name u-label-none">
+                            @Html.TextBoxFor(model => model.Name, new
+                        {
+                            placeholder = "Nhập tên catalog mới",
+                            id = "name-6797",
+                            name = "name",
+                            @class = "u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10",
+                            @Value = ""
+                        })
+                        </div>
+                        <div class="u-align-center u-form-group u-form-submit">
+                            <a href="#" class="u-active-palette-3-base u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-black u-palette-3-base u-radius-9 u-btn-1">
+                                Thêm<br>
+                            </a>
+                            <input type="submit" value="submit" class="u-form-control-hidden">
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="u-expanded-width-xs u-table u-table-responsive u-table-1">
+                <table class="u-table-entity u-table-entity-1">
+                    <colgroup>
+                        <col width="33.3%">
+                        <col width="33.3%">
+                        <col width="33.400000000000006%">
+                    </colgroup>
+                    <thead class="u-align-center u-palette-3-base u-table-header u-text-black u-table-header-1">
+                        <tr style="height: 33px;">
+                            <th class="u-border-1 u-border-black u-table-cell">Mã catalog</th>
+                            <th class="u-border-1 u-border-black u-table-cell">Tên catalog</th>
+                            <th class="u-border-1 u-border-black u-table-cell u-table-cell-3">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody class="u-align-center u-table-body u-white u-table-body-1">
+                        @foreach (var item in list)
+                        {
+                            if (item.NameCatalog != "Không xác định")
+                            {
+                                <tr style="height: 95px;">
+                                    <td class="u-border-1 u-border-grey-30 u-table-cell">@item.IdCatalog</td>
+                                    <td class="u-border-1 u-border-grey-30 u-table-cell">@item.NameCatalog</td>
+                                    <td class="u-border-1 u-border-grey-30 u-table-cell">
+                                        <span>
+                                            <button href="#carousel_56f8" style="border: none; background: none;cursor: pointer;color: inherit;" class="u-dialog-link" id="button" onclick="getdata('@item.IdCatalog')">Sửa</button>
+                                        </span>
+                                        <span class="u-btn u-border-none u-button-style u-hover-feature u-none u-btn-2">
+                                            @using (Html.BeginForm("DS_Catalog", "Home", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("feature", "", new { @Value = "Delete" })
+                                                @Html.HiddenFor(model => model.ID, new { @Value = item.IdCatalog})
+                                                @Html.HiddenFor(model => model.Name, new { @Value = item.NameCatalog })
+                                                <span>
+                                                    <input type="submit" style="border: none; background: none;cursor: pointer;color: inherit;" value="Xóa">
+                                                </span>
+                                            }
+                                        </span>
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <section class="u-align-center u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-dialog-section-5" id="carousel_56f8">
+        <div class="u-container-style u-dialog u-radius-10 u-shape-round u-white u-dialog-1">
+            <div class="u-container-layout u-container-layout-1">
+                <div class="u-align-center u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-shape-rectangle u-group-1">
+                    <div class="u-container-layout u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-2">
+                        <h3 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-2" style="color:black">Nhập tê​n brand m​ới</h3>
+                        <div class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-form u-form-1">
+                            @using (Html.BeginForm("DS_Catalog", "Home", FormMethod.Post))
+                            {
+                                @Html.Hidden("feature", "", new { @Value = "Replace" })
+                                <div class="u-clearfix u-form-spacing-8 u-form-vertical u-inner-form" style="padding: 10px" source="email" name="form">
+                                    <div class="u-form-group u-form-name u-label-top u-form-group-1">
+                                        @Html.HiddenFor(model => model.ID, new
+                                       {
+                                           id = "idbrand"
+                                       })
+
+                                        @Html.TextBoxFor(model => model.Name, new
+                                       {
+                                           placeholder = "Nhập tên brand mới",
+                                           name = "name",
+                                           id = "name-9cc4",
+                                           @class = "u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white u-input-1"
+                                       })
+                                    </div>
+                                    <div class="u-align-center u-form-group u-form-submit u-label-top u-form-group-2">
+                                        <a href="#" class="u-active-palette-3-base u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-black u-palette-3-base u-radius-10 u-btn-1">Submit</a>
+                                        <input type="submit" value="submit" class="u-form-control-hidden">
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div><button class="u-dialog-close-button u-icon u-text-grey-50 u-icon-1">
+                <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 409.806 409.806" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-4e2d"></use></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 409.806 409.806" x="0px" y="0px" id="svg-4e2d" style="enable-background:new 0 0 409.806 409.806;"><g><g><path d="M228.929,205.01L404.596,29.343c6.78-6.548,6.968-17.352,0.42-24.132c-6.548-6.78-17.352-6.968-24.132-0.42    c-0.142,0.137-0.282,0.277-0.42,0.42L204.796,180.878L29.129,5.21c-6.78-6.548-17.584-6.36-24.132,0.42    c-6.388,6.614-6.388,17.099,0,23.713L180.664,205.01L4.997,380.677c-6.663,6.664-6.663,17.468,0,24.132    c6.664,6.662,17.468,6.662,24.132,0l175.667-175.667l175.667,175.667c6.78,6.548,17.584,6.36,24.132-0.42    c6.387-6.614,6.387-17.099,0-23.712L228.929,205.01z"></path></g></g></svg>
+            </button>
+        </div>
+    </section>
+</body>
+</html>
